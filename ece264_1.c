@@ -1,4 +1,4 @@
-//Aaryan Mahipal
+//Aaryan Mahipal, This program creates one base class (for Foobars), and two children classes
 #include<iostream>
 #include<fstream>
 #include<string>
