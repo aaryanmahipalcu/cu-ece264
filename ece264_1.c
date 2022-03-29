@@ -2,6 +2,8 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<sstream>
+#include<vector>
 
 using namespace std;
 
@@ -26,45 +28,35 @@ class Bar: public Foobar{
 
 void userInput(){
     //This function reads each line of the input file
+    ifstream my_input_file(ifilename);  
+    string line; 
+    while(getline(my_input_file, line)){
+        stringstream ss(line);
+        string type;
+        string name;
+        ss >> type >> name;
+
+    }
 }
 
 void userOutput(){
     //This function loops through the vector and writes to the output file
+    ofstream my_output_file(ofilename);
 }
 
-//Declaring Functions
-std::string get_input_filename()
-std::string get_output_filename()
-std::string get_file_contents(std::string const& infile)
 int main(){
+    string ifilename;
+    cout << "Enter input file name: ";
+    cin >> ifilename;
+    cout << "Your Input Filename is: " << ifilename;
+    string ofilename;
+    cout << "Enter output file name: ";
+    cin >> ofilename;
+    cout << "Your Output Filename is: " << ofilename;
+   
 
-}
-
-//Implementing Functions
-std::string get_input_filename(){
-    std::string filename;
-    cout << "Enter Input filename\n";
-    cout << "Filename: ";
-    cin >> filename;
-    return filename;
-}
-
-std::string get_output_filename(){
-    std::string filename;
-    cout << "Enter Output filename\n";
-    cout << "Filename: ";
-    cin >> filename;
-    return filename;
-}
-
-std::string get_file_contents(std::string const& infile){
-    std::ifstream inf(infile);
-    std::string contents;
-    int c;
-    while ((c = inf.get()) != EOF){
-        contents += c;
-    }
-    return contents;
+my_input_file.close();
+my_output_file.close();
 }
 
 //use vectors to store the word and its location
