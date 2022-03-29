@@ -35,7 +35,7 @@ void userInput(){
         string type;
         string name;
         ss >> type >> name;
-
+        my_output_file << name << line;
     }
 }
 
@@ -53,10 +53,8 @@ int main(){
     cout << "Enter output file name: ";
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
-   
-
-my_input_file.close();
-my_output_file.close();
+    userOutput();
+    userInput();
 }
 
 //use vectors to store the word and its location
