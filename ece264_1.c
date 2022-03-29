@@ -7,6 +7,12 @@ using namespace std;
 
 class Foobar{    //This is my Base Class
     public: 
+    //getter function
+    //get function
+    private:
+    //name and position
+    protected: 
+    //foo and bar will be able to access and use
 
 };
 
