@@ -7,6 +7,10 @@
 
 using namespace std;
 
+//Global Variables
+string ifilename;
+string ofilename; 
+
 class Foobar{    //This is my Base Class
     public: 
     //getter function
@@ -45,11 +49,9 @@ void userOutput(){
 }
 
 int main(){
-    string ifilename;
     cout << "Enter input file name: ";
     cin >> ifilename;
     cout << "Your Input Filename is: " << ifilename;
-    string ofilename;
     cout << "Enter output file name: ";
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
