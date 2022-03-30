@@ -48,7 +48,7 @@ class Bar: public Foobar{
 
 };
 
-void userInput(){
+void userInput(string ifilename){
     //This function reads each line of the input file
     ifstream my_input_file(ifilename);  
     string line; 
@@ -61,7 +61,7 @@ void userInput(){
     }
 }
 
-void userOutput(){
+void userOutput(string ofilename){
     //This function loops through the vector and writes to the output file
     ofstream my_output_file(ofilename);
 }
