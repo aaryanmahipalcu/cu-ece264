@@ -19,7 +19,7 @@ class Foobar{    //This is my Base Class
     Foobar::Foobar(string FoobarInformation){
         stringstream FoobarStream(FoobarInformation);
         FoobarStream >> type >> name;}'''
-    Foobar(string z){
+    Foobar(string nm, int pos ){
         setName(z);
         //set name and position=0 in the constructor
     }
@@ -27,6 +27,10 @@ class Foobar{    //This is my Base Class
     //member functions
     void setName(x){
         name = x;
+    }
+
+    void setPosition(y){
+        position = y;
     }
     
     //Getters
@@ -67,7 +71,7 @@ void userInput(string ifilename, my_output_file){
         string type;
         string name;
         ss >> type >> name;
-        my_output_file << name << line;
+        //up till here, this function is reading the file line by line, now we need to find a way to add each info to a vector of pointers to foobar objects
     }
 }
 
