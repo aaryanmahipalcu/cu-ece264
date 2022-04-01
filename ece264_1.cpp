@@ -4,6 +4,7 @@
 #include<string>
 #include<sstream>
 #include<vector>
+#include<new>
 
 using namespace std;
 
@@ -18,13 +19,14 @@ class Foobar{    //This is my Base Class
     Foobar::Foobar(string FoobarInformation){
         stringstream FoobarStream(FoobarInformation);
         FoobarStream >> type >> name;}'''
-    Foobar(){
+    Foobar(string z){
+        setName(z);
         //set name and position=0 in the constructor
     }
 
     //member functions
-    void setName(){
-        name = ;
+    void setName(x){
+        name = x;
     }
     
     //Getters
