@@ -14,29 +14,37 @@ string ofilename;
 class Foobar{    //This is my Base Class
     public: 
     Foobar(string FoobarInformation);
-    //constructor
+    '''//constructor
     Foobar::Foobar(string FoobarInformation){
         stringstream FoobarStream(FoobarInformation);
-        FoobarStream >> type >> name;
+        FoobarStream >> type >> name;}'''
+    Foobar(){
+        //set name and position=0 in the constructor
     }
+
+    //member functions
+    void setName(){
+        name = ;
+    }
+    
     //Getters
-    string Foobar::gettype(){
+    string Foobar::getType(){
         return type;
     }
     string Foobar::getName(){
-        return Name;
+        return name;
     }
     //get the strength
     //get the name
     //memeber function to set position in line
-    string Type;
+    string type;
     private:
     //name and position
-    string Name;
-    string Position;
+    string name;
+    string position;
     protected: 
     //foo and bar will be able to access and use
-    string getPosition();
+    string getposition();
 
 };
 
@@ -48,7 +56,7 @@ class Bar: public Foobar{
 
 };
 
-void userInput(string ifilename){
+void userInput(string ifilename, my_output_file){
     //This function reads each line of the input file
     ifstream my_input_file(ifilename);  
     string line; 
