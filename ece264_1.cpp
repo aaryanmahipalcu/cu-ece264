@@ -15,14 +15,10 @@ string ofilename;
 class Foobar{    //This is my Base Class
     public: 
     Foobar(string FoobarInformation);
-    '''//constructor
+    //constructor
     Foobar::Foobar(string FoobarInformation){
         stringstream FoobarStream(FoobarInformation);
-        FoobarStream >> type >> name;}'''
-    Foobar(string nm, int pos ){
-        setName(z);
-        //set name and position=0 in the constructor
-    }
+        FoobarStream >> type >> name;}
 
     //member functions
     void setName(x){
@@ -55,21 +51,20 @@ class Foobar{    //This is my Base Class
 };
 
 class Foo: public Foobar{
-
+    int strength;
+    
 };
 
 class Bar: public Foobar{
 
 };
 
-void userInput(string ifilename, my_output_file){
+void userInput(string ifilename, string type, string name){
     //This function reads each line of the input file
     ifstream my_input_file(ifilename);  
     string line; 
     while(getline(my_input_file, line)){
         stringstream ss(line);
-        string type;
-        string name;
         ss >> type >> name;
         //up till here, this function is reading the file line by line, now we need to find a way to add each info to a vector of pointers to foobar objects
         cout << type << name
@@ -85,10 +80,10 @@ int main(){
     cout << "Enter input file name: ";
     cin >> ifilename;
     cout << "Your Input Filename is: " << ifilename;
-    '''cout << "Enter output file name: ";
+    cout << "Enter output file name: ";
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
-    userOutput();'''
+    userOutput();
     userInput();
 }
 
