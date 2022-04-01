@@ -72,6 +72,7 @@ void userInput(string ifilename, my_output_file){
         string name;
         ss >> type >> name;
         //up till here, this function is reading the file line by line, now we need to find a way to add each info to a vector of pointers to foobar objects
+        cout << type << name
     }
 }
 
@@ -84,10 +85,10 @@ int main(){
     cout << "Enter input file name: ";
     cin >> ifilename;
     cout << "Your Input Filename is: " << ifilename;
-    cout << "Enter output file name: ";
+    '''cout << "Enter output file name: ";
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
-    userOutput();
+    userOutput();'''
     userInput();
 }
 
