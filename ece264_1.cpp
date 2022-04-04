@@ -25,9 +25,8 @@ class Foobar{    //This is my Base Class
     }
     
     //Getters
-    int getStrength(){
-        virtual int strength = position;
-        return strength;
+    virtual int getStrength(){
+        return position;
     }
     string Foobar::getName(){
         return name;
@@ -49,13 +48,15 @@ class Foobar{    //This is my Base Class
 
 class Foo: public Foobar{
     public:
-    virtual int strength = (position)*3
+    virtual int getStrength(){
+        return position*3;
+    }
     
 };
 
 class Bar: public Foobar{
     public:
-    virtual int strength = (position)+15
+    virtual int position+15;
 };
 
 void getFiles(){
