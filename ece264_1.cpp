@@ -93,12 +93,21 @@ void userInput(string ifilename, string type, string name){
 }
 
 void update_strength(){
-
+    int n;
+    for(int i=0; i<=n; ++i){
+        Foobar *newp = new Foobar(i);
+        mainvector.push_back(newp);
+    }
 }
 
 void userOutput(string ofilename){
     //This function loops through the vector and writes to the output file
     ofstream my_output_file(ofilename);
+    my_output_file.open(ofilename);
+    int k;
+    for(int j=0; j<=k; ++j){
+        cout << name << " " << newp;
+    }
 }
 
 int main(){
