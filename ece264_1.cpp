@@ -25,8 +25,9 @@ class Foobar{    //This is my Base Class
     }
     
     //Getters
-    string Foobar::getStrength(){
-        return position;
+    int getStrength(){
+        virtual int strength = position;
+        return strength;
     }
     string Foobar::getName(){
         return name;
@@ -101,7 +102,7 @@ void userOutput(string ofilename){
 
 int main(){
     getFiles();
-
+    vector<Foobar *> mainvector;
     userInput(ifilename," "," ");
     update_strength();
     userOutput(ofilename);
