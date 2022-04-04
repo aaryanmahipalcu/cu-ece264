@@ -51,7 +51,7 @@ class Foobar{    //This is my Base Class
 };
 
 class Foo: public Foobar{
-    int strength;
+    
     
 };
 
