@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "xstring": "c",
-        "iosfwd": "c"
+        "iosfwd": "c",
+        "vector": "cpp"
     }
 }
