@@ -20,18 +20,13 @@ class Foobar{    //This is my Base Class
         position = p;
         }
 
-    //member functions
-    void setName(x){
-        name = x;
-    }
-
-    void setPosition(y){
-        position = y;
+    void setPosition(p){
+        position = p;
     }
     
     //Getters
-    string Foobar::getType(){
-        return type;
+    string Foobar::getStrength(){
+        return position;
     }
     string Foobar::getName(){
         return name;
@@ -43,11 +38,12 @@ class Foobar{    //This is my Base Class
     private:
     //name and position
     string name;
-    string position;
+    int position;
     protected: 
-    //foo and bar will be able to access and use
-    string getposition();
-
+    //getter to get position
+    int getPosition(){
+        return position;
+    }
 };
 
 class Foo: public Foobar{
@@ -103,6 +99,7 @@ void userOutput(string ofilename){
 
 int main(){
     getFiles();
+    
     userInput(ifilename," "," ");
     update_strength();
     userOutput(ofilename);
