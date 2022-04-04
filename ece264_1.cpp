@@ -14,7 +14,6 @@ string ofilename;
 
 class Foobar{    //This is my Base Class
     public: 
-    
     //constructor
     Foobar(string n, int p){
         name = n;
@@ -60,15 +59,35 @@ class Bar: public Foobar{
 
 };
 
+void getFiles(){
+    cout << "Enter input file name: ";
+    cin >> ifilename;
+    cout << "Your Input Filename is: " << ifilename;
+    cout << "Enter output file name: ";
+    cin >> ofilename;
+    cout << "Your Output Filename is: " << ofilename;
+}
+
 void userInput(string ifilename, string type, string name){
     //This function reads each line of the input file
     ifstream my_input_file(ifilename);  
     string line; 
+    my_input_file.open(ifilename);
     while(getline(my_input_file, line)){
         stringstream ss(line);
         ss >> type >> name;
-        //up till here, this function is reading the file line by line, now we need to find a way to add each info to a vector of pointers to foobar objects
-        cout << type << name;
+        if(type == "foobar"){
+            Foobar*p = new Foobar(name, 0);
+            mainvector.push_back(p);
+        }
+        else if(type == "foo"){
+            Foobar*p = new Foo(name, 0);
+            mainvector.push_back(p);
+        }
+        else(type == "bar"){
+            Foobar*p = new Bar(name, 0);
+            mainvector.push_back(p);
+        }
     }
 }
 
