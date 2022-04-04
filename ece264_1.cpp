@@ -14,11 +14,12 @@ string ofilename;
 
 class Foobar{    //This is my Base Class
     public: 
-    Foobar(string FoobarInformation);
+    
     //constructor
-    Foobar::Foobar(string FoobarInformation){
-        stringstream FoobarStream(FoobarInformation);
-        FoobarStream >> type >> name;}
+    Foobar(string n, int p){
+        name = n;
+        position = p;
+        }
 
     //member functions
     void setName(x){
@@ -67,7 +68,7 @@ void userInput(string ifilename, string type, string name){
         stringstream ss(line);
         ss >> type >> name;
         //up till here, this function is reading the file line by line, now we need to find a way to add each info to a vector of pointers to foobar objects
-        cout << type << name
+        cout << type << name;
     }
 }
 
@@ -84,7 +85,7 @@ int main(){
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
     userOutput();
-    userInput();
+    userInput(ifilename," "," ");
 }
 
 //use vectors to store the word and its location
