@@ -89,6 +89,11 @@ void userInput(string ifilename, string type, string name){
             mainvector.push_back(p);
         }
     }
+    my_input_file.close();
+}
+
+void update_strength(){
+
 }
 
 void userOutput(string ofilename){
@@ -97,14 +102,10 @@ void userOutput(string ofilename){
 }
 
 int main(){
-    cout << "Enter input file name: ";
-    cin >> ifilename;
-    cout << "Your Input Filename is: " << ifilename;
-    cout << "Enter output file name: ";
-    cin >> ofilename;
-    cout << "Your Output Filename is: " << ofilename;
-    userOutput();
+    getFiles();
     userInput(ifilename," "," ");
+    update_strength();
+    userOutput(ofilename);
 }
 
 //use vectors to store the word and its location
