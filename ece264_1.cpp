@@ -47,12 +47,14 @@ class Foobar{    //This is my Base Class
 };
 
 class Foo: public Foobar{
-    
+    public:
+    virtual int strength = (position)*3
     
 };
 
 class Bar: public Foobar{
-
+    public:
+    virtual int strength = (position)+15
 };
 
 void getFiles(){
@@ -99,7 +101,7 @@ void userOutput(string ofilename){
 
 int main(){
     getFiles();
-    
+
     userInput(ifilename," "," ");
     update_strength();
     userOutput(ofilename);
