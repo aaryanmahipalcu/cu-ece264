@@ -111,8 +111,9 @@ void userOutput(vector<Foobar *> &vec, string ofilename){
     ofstream my_output_file(ofilename);
     my_output_file.open(ofilename);
     for(auto foobar : vec){
-        cout << foobar->getName() << " " << foobar->getStrength();
+        my_output_file << foobar->getName() << " " << foobar->getStrength() << "\n";
     }
+    my_output_file.close();
 }
 
 int main(){
