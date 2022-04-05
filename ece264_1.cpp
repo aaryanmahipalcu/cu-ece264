@@ -62,9 +62,11 @@ class Foo: public Foobar{
 class Bar: public Foobar{
     public:
     Bar(string name, int position):Foobar(name, position){
-        
+
     }
-    inline virtual int (position)+15;
+    inline virtual int getStrength(){
+        return position+15;
+    }
 };
 
 void getFiles(){
