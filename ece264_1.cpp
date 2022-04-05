@@ -98,14 +98,6 @@ void userInput(vector<Foobar *> &vec, string ifilename){
     my_input_file.close();
 }
 
-/*void update_strength(){
-    int n;
-    for(int i=0; i<=n; ++i){
-        Foobar *newp = new Foobar(i);
-        mainvector.push_back(newp);
-    }
-}*/
-
 void userOutput(vector<Foobar *> &vec, string ofilename){
     //This function loops through the vector and writes to the output file
     ofstream my_output_file(ofilename);
@@ -119,8 +111,7 @@ int main(){
     getFiles();
     vector<Foobar *> mainvector;
     userInput(mainvector, ifilename);
-    //update_strength();
     userOutput(mainvector, ofilename);
 }
 
-//use vectors to store the word and its location
+
