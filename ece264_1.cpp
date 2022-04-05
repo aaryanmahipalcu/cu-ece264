@@ -54,7 +54,7 @@ class Foo: public Foobar{
 
     }
     inline virtual int getStrength(){
-        return position*3;
+        return getPosition()*3;
     }
     
 };
@@ -65,7 +65,7 @@ class Bar: public Foobar{
 
     }
     inline virtual int getStrength(){
-        return position+15;
+        return getPosition()+15;
     }
 };
 
