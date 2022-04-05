@@ -50,6 +50,7 @@ public:
 
 class Foo: public Foobar{
     public:
+    Foo(string name, int position):Foobar(n, p);
     inline virtual int getStrength(){
         return position*3;
     }
@@ -58,6 +59,7 @@ class Foo: public Foobar{
 
 class Bar: public Foobar{
     public:
+    Bar(string name, int position):Foobar(n, p);
     inline virtual int (position)+15;
 };
 
