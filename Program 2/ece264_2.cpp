@@ -14,7 +14,7 @@ string ofilename;
 void getFiles(){
     cout << "Enter input file name: ";
     cin >> ifilename;
-    cout << "Your Input Filename is: " << ifilename;
+    cout << "Your Input Filename is: " << ifilename << "\n";
     cout << "Enter output file name: ";
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
