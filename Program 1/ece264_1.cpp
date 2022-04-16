@@ -84,7 +84,6 @@ void userInput(vector<Foobar *> &vec, string ifilename){
     //This function reads each line of the input file
     ifstream my_input_file(ifilename);  
     string line; 
-    my_input_file.open(ifilename);
     int pos = 0;
     while(getline(my_input_file, line)){
         stringstream ss(line);
@@ -101,15 +100,18 @@ void userInput(vector<Foobar *> &vec, string ifilename){
             Foobar*p = new Bar(name, pos);
             vec.push_back(p);
         }
-        ++pos;
     }
+    for (int i = vec.size() - 1; i >= 0; i--)
+    {
+        vec.at(i)->setPosition(++pos);
+    }
+        //++pos;
     my_input_file.close();
 }
 
 void userOutput(vector<Foobar *> &vec, string ofilename){
     //This function loops through the vector and writes to the output file
     ofstream my_output_file(ofilename);
-    my_output_file.open(ofilename);
     for(auto foobar : vec){
         my_output_file << foobar->getName() << " " << foobar->getStrength() << "\n";
     }
