@@ -12,6 +12,7 @@ string ifilename;
 string ofilename;
 
 template <typename NODETYPE>
+template <typename PUSHTYPE>
 
 class SimpleList {
 private:
@@ -81,17 +82,19 @@ void getFiles(){
 }
 
 void userInput(string ifilename){
-    string action, name, type;
+    string action, name;
     ifstream my_input_file(ifilename);
     string line;
     while(getline(my_input_file, line)){
         stringstream ss(line);
         ss >> action >> name;
         if(action == "create"){
+            string type;
             ss >> action >> name >> type;
         }
         else if(action == "push"){
-
+            PUSHTYPE value;
+            ss >> action >> name >> value;
         }
     }
 
