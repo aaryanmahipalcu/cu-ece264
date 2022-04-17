@@ -12,11 +12,14 @@ string ifilename;
 string ofilename;
 
 class SimpleList {
-    protected:
+private:
+    class Node {
 
-    private:
 
-    public:
+    };
+protected:
+
+public:
 
 };
 
@@ -39,7 +42,20 @@ void getFiles(){
     cout << "Your Output Filename is: " << ofilename;
 }
 
-void userInput(){
+void userInput(string ifilename){
+    string action, name, type;
+    ifstream my_input_file(ifilename);
+    string line;
+    while(getline(my_input_file, line)){
+        stringstream ss(line);
+        ss >> action >> name;
+        if(action == "create"){
+            ss >> action >> name >> type;
+        }
+        else if(action == "push"){
+            
+        }
+    }
 
 }
 
