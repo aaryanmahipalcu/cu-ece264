@@ -45,6 +45,7 @@ protected:
         last->next = new_node;
         return;
     }
+    //Delete a node from the front
     void pop_front(Node** head_ref, NODETYPE new_data){
         if (*head_ref != NULL){
             Node* temp = *head_ref;
