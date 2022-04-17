@@ -57,6 +57,8 @@ public:
     string getName(){
         return name;
     }
+    virtual void pop() = 0;
+    virtual void push() = 0;
 };
 
 class Stack: public SimpleList {
