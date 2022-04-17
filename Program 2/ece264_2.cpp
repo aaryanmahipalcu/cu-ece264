@@ -11,6 +11,25 @@ using namespace std;
 string ifilename;
 string ofilename;
 
+class SimpleList {
+    protected:
+
+    private:
+
+    public:
+
+};
+
+class Stack: public SimpleList {
+    public:
+
+};
+
+class Queue: public SimpleList {
+    public:
+
+};
+
 void getFiles(){
     cout << "Enter input file name: ";
     cin >> ifilename;
@@ -18,6 +37,14 @@ void getFiles(){
     cout << "Enter output file name: ";
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
+}
+
+void userInput(){
+
+}
+
+void userOutput(){
+
 }
 
 int main(){
