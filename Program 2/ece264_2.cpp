@@ -13,6 +13,7 @@ string ofilename;
 
 class SimpleList {
 private:
+    string name;
     class Node {
 
 
@@ -20,7 +21,9 @@ private:
 protected:
 
 public:
-
+    string getName(){
+        return name;
+    }
 };
 
 class Stack: public SimpleList {
@@ -53,7 +56,7 @@ void userInput(string ifilename){
             ss >> action >> name >> type;
         }
         else if(action == "push"){
-            
+
         }
     }
 
