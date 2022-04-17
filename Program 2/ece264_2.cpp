@@ -11,11 +11,14 @@ using namespace std;
 string ifilename;
 string ofilename;
 
+template <typename NODETYPE>
+
 class SimpleList {
 private:
     string name;
     class Node {
-
+        NODETYPE data;
+        Node *next;
 
     };
 protected:
