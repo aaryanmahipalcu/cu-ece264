@@ -1,39 +1,31 @@
 #include<iostream>
 #include<string>
-#include<vector>
+#include<new>
 #include<fstream>
 #include<sstream>
-#include<new>
 #include<list>
 
 using namespace std;
 
-//Global Variables
-string ifilename;
-string ofilename;
 
-//Templates
-template <typename NODETYPE>
-template <typename PUSHTYPE>
-
+template <typename T>
 class SimpleList {
 private:
     string name;
     class Node {
-        NODETYPE data;
-        Node *next;
-
+        T data;
+        Node* next;
     };
 protected:
     //Add a node to the front
-    void push_front(Node** head_ref, NODETYPE new_data){
+    void push_front(Node** head_ref, T new_data){
         Node* new_node = new Node();
         new_node->data = new_data;
         new_node->next = (*head_ref);
         (*head_ref) = new_node;
     }
     //Add a node at the end
-    void push_back(Node** head_ref, NODETYPE new_data){
+    void push_back(Node** head_ref, T new_data){
         Node* new_node = new Node();
         Node* last = *head_ref;
         new_node->data = new_data;
@@ -49,7 +41,7 @@ protected:
         return;
     }
     //Delete a node from the front
-    void pop_front(Node** head_ref, NODETYPE new_data){
+    void pop_front(Node** head_ref, T new_data){
         if (*head_ref != NULL){
             Node* temp = *head_ref;
             *head_ref = *head_Ref->next;
@@ -61,45 +53,44 @@ public:
     string getName(){
         return name;
     }
-    virtual void pop() = 0;
-    virtual void push() = 0;
+    virtual void pop(T) = 0;
+    virtual void push(T) = 0;
 };
 
-class Stack: public SimpleList {
+template <typename T>
+class Stack: public SimpleList<T> {
     public:
+        void push(T new_data){
+            this->push_front(new_data);
+        }
+        T pop(){
+            return this->pop_front();
+        }
+        Stack(string stackname):SimpleList<T>(stackname){
 
+        }
 };
 
-class Queue: public SimpleList {
+template <typename T>
+class Queue: public SimpleList<T> {
     public:
+        void push(T new_data){
+            this->push_back(new_data);
+        }
+        T pop(){
+            return this->pop_front();
+        }
+        Queue(string stackname):SimpleList<T>(stackname){
 
+        }
 };
 
 void getFiles(){
     cout << "Enter input file name: ";
     cin >> ifilename;
-    cout << "Your Input Filename is: " << ifilename << "\n";
     cout << "Enter output file name: ";
     cin >> ofilename;
     cout << "Your Output Filename is: " << ofilename;
-}
-
-void userInput(string ifilename){
-    string action, name;
-    ifstream my_input_file(ifilename);
-    string line;
-    while(getline(my_input_file, line)){
-        stringstream ss(line);
-        ss >> action >> name;
-        if(action == "create"){
-            string type;
-            ss >> action >> name >> type;
-        }
-        else if(action == "push"){
-            PUSHTYPE value;
-            ss >> action >> name >> value;
-        }
-    }
 }
 
 list<SimpleList<int> *> listSLi; // all integer stacks and queues
@@ -117,9 +108,6 @@ SimpleList< T >* getlistSL(list<SimpleList< T > > &listSL, string list_name)
         return nullptr;
 }
 
-void userOutput(string ofilename){
-    ofstream my_output_file(ofilename);
-}
 
 void processCommands(){
 
