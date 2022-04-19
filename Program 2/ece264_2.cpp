@@ -4,6 +4,7 @@
 #include<fstream>
 #include<sstream>
 #include<new>
+#include<list>
 
 using namespace std;
 
@@ -56,6 +57,7 @@ protected:
         }
     }
 public:
+    
     string getName(){
         return name;
     }
@@ -98,11 +100,29 @@ void userInput(string ifilename){
             ss >> action >> name >> value;
         }
     }
-    my_input_file.close();
+}
+
+list<SimpleList<int> *> listSLi; // all integer stacks and queues
+list<SimpleList<double> *> listSLd; // all double stacks and queues
+list<SimpleList<string> *> listSLs; // all string stacks and queues
+
+template <typename T>
+SimpleList< T >* getlistSL(list<SimpleList< T > > &listSL, string list_name)
+{
+        for (typename list<SimpleList< T >>::const_iterator it = listSL.begin(); it != listSL.end(); it++)
+        {
+                if(((it)->getName() == list_name))
+                        returnit;
+        }
+        return nullptr;
 }
 
 void userOutput(string ofilename){
     ofstream my_output_file(ofilename);
+}
+
+void processCommands(){
+
 }
 
 int main(){
