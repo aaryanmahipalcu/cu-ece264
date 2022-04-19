@@ -33,10 +33,6 @@ protected:
         Node *new_node = new Node();
         new_node->data = new_data;
         new_node->next = nullptr;
-        if(*head_ref == nullptr){
-            *head_ref = new_node;
-            return;
-        }
         while(last->next != nullptr){
             last = last->next;
         }
@@ -255,7 +251,7 @@ void processCommands(string &ifilename, string &ofilename){
                     my_output_file << "ERROR: This name does not exist!\n";
                 }
                 else if(strAddress->getLength() < 1){
-                    my_output_file << "ERROR: This list is empty!\n"
+                    my_output_file << "ERROR: This list is empty!\n";
                 }
                 else{
                     my_output_file << "Value popped: " << strAddress->pop() << "\n";
