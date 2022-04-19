@@ -11,6 +11,7 @@ using namespace std;
 string ifilename;
 string ofilename;
 
+//Templates
 template <typename NODETYPE>
 template <typename PUSHTYPE>
 
