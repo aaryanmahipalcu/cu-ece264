@@ -84,10 +84,6 @@ class Queue: public SimpleList<T> {
         }
 };
 
-list<SimpleList<int> *> listSLi; // all integer stacks and queues
-list<SimpleList<double> *> listSLd; // all double stacks and queues
-list<SimpleList<string> *> listSLs; // all string stacks and queues
-
 void getFiles(){
     cout << "Enter input file name: ";
     cin >> ifilename;
@@ -108,8 +104,14 @@ SimpleList< T >* search(list<SimpleList<T>*> &listSL, string list_name){
 }
 
 
-void processCommands(){
+void processCommands(const string& readFile, const string& writeFile){
+    //List Declerations
+    list<SimpleList<int> *> listSLi; // all integer stacks and queues
+    list<SimpleList<double> *> listSLd; // all double stacks and queues
+    list<SimpleList<string> *> listSLs; // all string stacks and queues
 
+    ifstream ifilename(readFile);
+    ofstream ofilename(writeFile);
 }
 
 int main(){
