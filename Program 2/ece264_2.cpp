@@ -33,8 +33,15 @@ protected:
         Node *new_node = new Node();
         new_node->data = new_data;
         new_node->next = nullptr;
+        if(*head_ref == nullptr){
+            *head_ref = new_node;
+            return;
+        }
+        while(last->next != nullptr){
+            last = last->next;
+        }
         last->next = new_node;
-        last = new_node;
+        return;
         size ++;
     }
     //Delete a node from the front
