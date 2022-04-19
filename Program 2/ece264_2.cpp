@@ -112,6 +112,70 @@ void processCommands(const string& readFile, const string& writeFile){
 
     ifstream ifilename(readFile);
     ofstream ofilename(writeFile);
+
+    string line; //sentence to read
+    string command; //command
+    string list_name; //name of list
+    char list_type; //double, int, string
+    string list_struc; //stack or queue
+    string third_word; //third word
+
+    while(getline(ifilename, line)){
+        stringstream ss(line);
+        ss >> command >> list_name >> third_word;
+        //Declaring what type of list it is
+        list_type = list_name[0];
+        cout << "PROCESSING COMMAND: " << line << "\n";
+
+        if(command == "create"){
+            list_struc = third_word;
+            if(list_type = 'i'){
+                if(search(list_name, listSLi) == nullptr){
+                    SimpleList<int> *pSLi;
+                    if(list_struc == "queue"){
+                        pSLi = new Queue<int>(list_name);
+                    }
+                    else{
+                        pSLi = new Stack<int>(list_name);
+                    }
+                    listSLi.push_front(pSLi);
+                }
+                else{
+                    cout << "ERROR: This name already exists!\n";
+                }
+            }
+            else if(list_type = 'd'){
+                if(search(list_name, listSLd) == nullptr){
+                    SimpleList<double> *pSLd;
+                    if(list_struc == "queue"){
+                        pSLd = new Queue<double>(list_name);
+                    }
+                    else{
+                        pSLd = new Stack<double>(list_name);
+                    }
+                    listSLd.push_front(pSLd);
+                }
+                else{
+                    cout << "ERROR: This name already exists!\n";
+                }
+            }
+            else{
+                if(search(list_name, listSLs) == nullptr){
+                    SimpleList<string> *pSLs;
+                    if(list_struc == "queue"){
+                        pSLs = new Queue<string>(list_name);
+                    }
+                    else{
+                        pSLs = new Stack<string>(list_name);
+                    }
+                    listSLs.push_front(pSLs);
+                }
+                else{
+                    cout << "ERROR: This name already exists!\n";
+            }
+        }
+    }
+    
 }
 
 int main(){
