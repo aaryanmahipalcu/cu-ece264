@@ -242,6 +242,18 @@ void processCommands(string &ifilename, string &ofilename){
                     my_output_file << "Value popped: " << doubleAddress->pop() << "\n";
                 }
             }
+            else{
+                SimpleList<string>* strAddress = search(listSLs, list_name);
+                if(strAddress == nullptr){
+                    my_output_file << "ERROR: This name does not exist!\n";
+                }
+                else if(strAddress->getLength() < 1){
+                    my_output_file << "ERROR: This list is empty!\n"
+                }
+                else{
+                    my_output_file << "Value popped: " << strAddress->pop() << "\n";
+                }
+            }
         }
     }
     my_input_file.close();
