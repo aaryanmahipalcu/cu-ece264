@@ -2,6 +2,7 @@
     "files.associations": {
         "xstring": "c",
         "iosfwd": "c",
-        "vector": "cpp"
+        "vector": "cpp",
+        "list": "cpp"
     }
 }

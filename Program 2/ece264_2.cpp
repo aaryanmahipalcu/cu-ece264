@@ -49,7 +49,6 @@ protected:
         }
     }
 public:
-    
     string getName(){
         return name;
     }
@@ -85,6 +84,10 @@ class Queue: public SimpleList<T> {
         }
 };
 
+list<SimpleList<int> *> listSLi; // all integer stacks and queues
+list<SimpleList<double> *> listSLd; // all double stacks and queues
+list<SimpleList<string> *> listSLs; // all string stacks and queues
+
 void getFiles(){
     cout << "Enter input file name: ";
     cin >> ifilename;
@@ -93,19 +96,15 @@ void getFiles(){
     cout << "Your Output Filename is: " << ofilename;
 }
 
-list<SimpleList<int> *> listSLi; // all integer stacks and queues
-list<SimpleList<double> *> listSLd; // all double stacks and queues
-list<SimpleList<string> *> listSLs; // all string stacks and queues
 
 template <typename T>
-SimpleList< T >* getlistSL(list<SimpleList< T > > &listSL, string list_name)
-{
-        for (typename list<SimpleList< T >>::const_iterator it = listSL.begin(); it != listSL.end(); it++)
-        {
-                if(((it)->getName() == list_name))
-                        returnit;
+SimpleList< T >* search(list<SimpleList<T>*> &listSL, string list_name){
+        for (auto it = listSL.begin(); it != listSL.end(); it++){
+                if((*it)->getName() == list_name){
+                        return *it;
+                 }
         }
-        return nullptr;
+    return nullptr;
 }
 
 
