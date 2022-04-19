@@ -13,6 +13,7 @@ class SimpleList {
 private:
     string name;
     class Node {
+    public:
         T data;
         Node* next;
     };
@@ -27,18 +28,17 @@ protected:
 
         size ++;
     }
-    //Add a node at the end
+    //Add a node at the end, change for head_ref
     void push_back(T new_data){
         Node *new_node = new Node();
-        //Node* last = *head_ref;
         new_node->data = new_data;
         new_node->next = nullptr;
         last->next = new_node;
-        last - new_node;
+        last = new_node;
         size ++;
     }
     //Delete a node from the front
-    void pop_front(T new_data){
+    T void pop_front(){
         T new_data = head_ref->next->data;
         Node *temp = head_ref->next->next;
         delete(head_ref->next);
@@ -46,12 +46,12 @@ protected:
         size --;
         return new_data;
         }
-    }
 public:
-    Node *head_ref = new Node();
-    Node *last = new Node();
+    Node *head_ref;
+    Node *last;
 
     SimpleList(string my_name){
+        head_ref = Node();
         name = my_name;
         head_ref->next = nullptr;
         last = head_ref;
@@ -62,7 +62,7 @@ public:
     string getName(){
         return name;
     }
-    virtual void pop(T) = 0;
+    virtual T pop() = 0;
     virtual void push(T) = 0;
 };
 
@@ -104,7 +104,7 @@ void getFiles(string ifilename, string ofilename){
 
 
 template <typename T>
-SimpleList< T >* search(list<SimpleList<T>*> &listSL, string list_name){
+SimpleList<T>* search(list<SimpleList<T>*> &listSL, string list_name){
         for (auto it = listSL.begin(); it != listSL.end(); it++){
                 if((*it)->getName() == list_name){
                         return *it;
@@ -114,7 +114,7 @@ SimpleList< T >* search(list<SimpleList<T>*> &listSL, string list_name){
 }
 
 
-void processCommands(string ifilename, string ofilename){
+void processCommands(string &ifilename, string &ofilename){
     //List Declerations
     list<SimpleList<int> *> listSLi; // all integer stacks and queues
     list<SimpleList<double> *> listSLd; // all double stacks and queues
@@ -130,17 +130,17 @@ void processCommands(string ifilename, string ofilename){
     string list_struc; //stack or queue
     string third_word; //third word
 
-    while(getline(ifilename, line)){
+    while(getline(my_input_file, line)){
         stringstream ss(line);
         ss >> command >> list_name >> third_word;
         //Declaring what type of list it is
         list_type = list_name[0];
-        cout << "PROCESSING COMMAND: " << line << "\n";
+        my_output_file << "PROCESSING COMMAND: " << line << "\n";
 
         if(command == "create"){
             list_struc = third_word;
             if(list_type = 'i'){
-                if(search(list_name, listSLi) == nullptr){
+                if(search(listSLi, list_name) == nullptr){
                     SimpleList<int> *pSLi;
                     if(list_struc == "queue"){
                         pSLi = new Queue<int>(list_name);
@@ -151,11 +151,11 @@ void processCommands(string ifilename, string ofilename){
                     listSLi.push_front(pSLi);
                 }
                 else{
-                    cout << "ERROR: This name already exists!\n";
+                    my_output_file << "ERROR: This name already exists!\n";
                 }
             }
             else if(list_type = 'd'){
-                if(search(list_name, listSLd) == nullptr){
+                if(search(listSLd, list_name) == nullptr){
                     SimpleList<double> *pSLd;
                     if(list_struc == "queue"){
                         pSLd = new Queue<double>(list_name);
@@ -166,11 +166,11 @@ void processCommands(string ifilename, string ofilename){
                     listSLd.push_front(pSLd);
                 }
                 else{
-                    cout << "ERROR: This name already exists!\n";
+                    my_output_file << "ERROR: This name already exists!\n";
                 }
             }
             else{
-                if(search(list_name, listSLs) == nullptr){
+                if(search(listSLs, list_name) == nullptr){
                     SimpleList<string> *pSLs;
                     if(list_struc == "queue"){
                         pSLs = new Queue<string>(list_name);
@@ -181,14 +181,15 @@ void processCommands(string ifilename, string ofilename){
                     listSLs.push_front(pSLs);
                 }
                 else{
-                    cout << "ERROR: This name already exists!\n";
+                    my_output_file << "ERROR: This name already exists!\n";
+                }
             }
         }
         else if(command == "push"){
             if(list_type == 'i'){
-                SimpleList<int>* intAddress = search(list_name, listSLi);
+                SimpleList<int>* intAddress = search(listSLi, list_name);
                 if(intAddress == nullptr){
-                    cout << "ERROR: This name does not exist\n";
+                    my_output_file << "ERROR: This name does not exist\n";
                 }
                 else{
                     int new_data = std::stoi(third_word);
@@ -196,19 +197,19 @@ void processCommands(string ifilename, string ofilename){
                 }
             }
             else if(list_type == 'd'){
-                SimpleList<double>* doubleAddress = search(list_name, listSLd);
+                SimpleList<double>* doubleAddress = search(listSLd, list_name);
                 if(doubleAddress == nullptr){
-                    cout << "ERROR: This name does not exist\n";
+                    my_output_file << "ERROR: This name does not exist\n";
                 }
                 else{
-                    double new_data = std::stob(third_word);
+                    double new_data = std::stod(third_word);
                     doubleAddress->push(new_data);
                 }
             }
             else{
-                SimpleList<string>* strAddress = search(list_name, listSLs);
+                SimpleList<string>* strAddress = search(listSLs, list_name);
                 if(strAddress == nullptr){
-                    cout << "ERROR: This name does not exist\n";
+                    my_output_file << "ERROR: This name does not exist\n";
                 }
                 else{
                     string new_data = third_word;
@@ -218,27 +219,27 @@ void processCommands(string ifilename, string ofilename){
         }
         else{
             if(list_type == 'i'){
-                SimpleList<int>* intAddress = search(list_name, listSLi);
+                SimpleList<int>* intAddress = search(listSLi, list_name);
                 if(intAddress == nullptr){
-                    cout << "ERROR: This name does not exist!\n";
+                    my_output_file << "ERROR: This name does not exist!\n";
                 }
                 else if(intAddress->getLength() < 1){
-                    cout << "ERROR: This list is empty!\n";
+                    my_output_file << "ERROR: This list is empty!\n";
                 }
                 else{
-                    cout << "Value popped: " << intAddress->pop() << "\n";
+                    my_output_file << "Value popped: " << intAddress->pop() << "\n";
                 }
             }
             else if(list_type == 'd'){
-                SimpleList<double>* doubleAddress = search(list_name, listSLd);
+                SimpleList<double>* doubleAddress = search(listSLd, list_name);
                 if(doubleAddress == nullptr){
-                    cout << "ERROR: This name does not exist!\n";
+                    my_output_file << "ERROR: This name does not exist!\n";
                 }
                 else if(doubleAddress->getLength() < 1){
-                    cout << "ERROR: This list is empty!\n";
+                    my_output_file << "ERROR: This list is empty!\n";
                 }
                 else{
-                    cout << "Value popped: " << doubleAddress->pop() << "\n";
+                    my_output_file << "Value popped: " << doubleAddress->pop() << "\n";
                 }
             }
         }
@@ -248,7 +249,8 @@ void processCommands(string ifilename, string ofilename){
 }
 
 int main(){
-    getFiles();
-    processCommands(string ifilename, string ofilename);
+    string ifilename, ofilename;
+    getFiles(ifilename, ofilename);
+    processCommands(ifilename, ofilename);
     return 0;
 }
