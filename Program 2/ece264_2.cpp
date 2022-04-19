@@ -104,14 +104,14 @@ SimpleList< T >* search(list<SimpleList<T>*> &listSL, string list_name){
 }
 
 
-void processCommands(const string& readFile, const string& writeFile){
+void processCommands(string ifilename, string ofilename){
     //List Declerations
     list<SimpleList<int> *> listSLi; // all integer stacks and queues
     list<SimpleList<double> *> listSLd; // all double stacks and queues
     list<SimpleList<string> *> listSLs; // all string stacks and queues
 
-    ifstream ifilename(readFile);
-    ofstream ofilename(writeFile);
+    ifstream my_input_file(ifilename);
+    ofstream my_output_file(ofilename);
 
     string line; //sentence to read
     string command; //command
@@ -207,11 +207,34 @@ void processCommands(const string& readFile, const string& writeFile){
             }
         }
         else{
-            
+            if(list_type == 'i'){
+                SimpleList<int>* intAddress = search(list_name, listSLi);
+                if(intAddress == nullptr){
+                    cout << "ERROR: This name does not exist!\n";
+                }
+                else if(intAddress->getLength() < 1){
+                    cout << "ERROR: This list is empty!\n";
+                }
+                else{
+                    cout << "Value popped: " << intAddress->pop() << "\n";
+                }
+            }
+            else if(list_type == 'd'){
+                SimpleList<double>* doubleAddress = search(list_name, listSLd);
+                if(doubleAddress == nullptr){
+                    cout << "ERROR: This name does not exist!\n";
+                }
+                else if(doubleAddress->getLength() < 1){
+                    cout << "ERROR: This list is empty!\n";
+                }
+                else{
+                    cout << "Value popped: " << doubleAddress->pop() << "\n";
+                }
+            }
         }
-
     }
-
+    my_input_file.close();
+    my_output_file.close();
 }
 
 int main(){
