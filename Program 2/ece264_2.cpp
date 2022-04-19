@@ -97,11 +97,11 @@ void userInput(string ifilename){
             ss >> action >> name >> value;
         }
     }
-
+    my_input_file.close();
 }
 
-void userOutput(){
-
+void userOutput(string ofilename){
+    ofstream my_output_file(ofilename);
 }
 
 int main(){
