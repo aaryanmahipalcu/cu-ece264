@@ -16,39 +16,49 @@ private:
         T data;
         Node* next;
     };
+    int size = 0;
 protected:
     //Add a node to the front
-    void push_front(Node** head_ref, T new_data){
-        Node* new_node = new Node();
+    void push_front(T new_data){
+        Node *new_node = new Node();
         new_node->data = new_data;
-        new_node->next = (*head_ref);
-        (*head_ref) = new_node;
+        new_node->next = head_ref->next;
+        head_ref->next = new_node;
+
+        size ++;
     }
     //Add a node at the end
-    void push_back(Node** head_ref, T new_data){
-        Node* new_node = new Node();
-        Node* last = *head_ref;
+    void push_back(T new_data){
+        Node *new_node = new Node();
+        //Node* last = *head_ref;
         new_node->data = new_data;
-        new_node->next = NULL;
-        if (*head_ref == NULL){
-            *head_ref = new_node;
-            return;
-        }
-        while (last->next != NULL){
-            last = last->next;
-        }
+        new_node->next = nullptr;
         last->next = new_node;
-        return;
+        last - new_node;
+        size ++;
     }
     //Delete a node from the front
-    void pop_front(Node** head_ref, T new_data){
-        if (*head_ref != NULL){
-            Node* temp = *head_ref;
-            *head_ref = *head_Ref->next;
-            free(temp);
+    void pop_front(T new_data){
+        T new_data = head_ref->next->data;
+        Node *temp = head_ref->next->next;
+        delete(head_ref->next);
+        head_ref->next = temp;
+        size --;
+        return new_data;
         }
     }
 public:
+    Node *head_ref = new Node();
+    Node *last = new Node();
+
+    SimpleList(string my_name){
+        name = my_name;
+        head_ref->next = nullptr;
+        last = head_ref;
+    }
+    int getLength(){
+        return size;
+    }
     string getName(){
         return name;
     }
@@ -84,7 +94,7 @@ class Queue: public SimpleList<T> {
         }
 };
 
-void getFiles(){
+void getFiles(string ifilename, string ofilename){
     cout << "Enter input file name: ";
     cin >> ifilename;
     cout << "Enter output file name: ";
@@ -239,4 +249,6 @@ void processCommands(string ifilename, string ofilename){
 
 int main(){
     getFiles();
+    processCommands(string ifilename, string ofilename);
+    return 0;
 }
