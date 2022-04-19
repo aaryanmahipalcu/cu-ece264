@@ -174,8 +174,44 @@ void processCommands(const string& readFile, const string& writeFile){
                     cout << "ERROR: This name already exists!\n";
             }
         }
+        else if(command == "push"){
+            if(list_type == 'i'){
+                SimpleList<int>* intAddress = search(list_name, listSLi);
+                if(intAddress == nullptr){
+                    cout << "ERROR: This name does not exist\n";
+                }
+                else{
+                    int new_data = std::stoi(third_word);
+                    intAddress->push(new_data);
+                }
+            }
+            else if(list_type == 'd'){
+                SimpleList<double>* doubleAddress = search(list_name, listSLd);
+                if(doubleAddress == nullptr){
+                    cout << "ERROR: This name does not exist\n";
+                }
+                else{
+                    double new_data = std::stob(third_word);
+                    doubleAddress->push(new_data);
+                }
+            }
+            else{
+                SimpleList<string>* strAddress = search(list_name, listSLs);
+                if(strAddress == nullptr){
+                    cout << "ERROR: This name does not exist\n";
+                }
+                else{
+                    string new_data = third_word;
+                    strAddress->push(new_data);  
+                }   
+            }
+        }
+        else{
+            
+        }
+
     }
-    
+
 }
 
 int main(){
