@@ -7,7 +7,7 @@
 
 using namespace std;
 
-
+//SimpleList Base Class
 template <typename T>
 class SimpleList {
 private:
@@ -52,16 +52,18 @@ protected:
 public:
     Node *head_ref;
     Node *last;
-
+    //Constructor 
     SimpleList(string my_name){
         head_ref = Node();
         name = my_name;
         head_ref->next = nullptr;
         last = head_ref;
     }
+    //Getter to retrieve length
     int getLength(){
         return size;
     }
+    //Getter to retrieve name
     string getName(){
         return name;
     }
@@ -79,7 +81,6 @@ class Stack: public SimpleList<T> {
             return this->pop_front();
         }
         Stack(string stackname):SimpleList<T>(stackname){
-
         }
 };
 
