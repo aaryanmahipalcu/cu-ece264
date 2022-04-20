@@ -98,7 +98,7 @@ class Queue: public SimpleList<T> {
         }
 };
 
-void getFiles(string ifilename, string ofilename){
+void getFiles(string &ifilename, string &ofilename){
     cout << "Enter input file name: ";
     cin >> ifilename;
     cout << "Enter output file name: ";
