@@ -103,7 +103,6 @@ void getFiles(string ifilename, string ofilename){
     cin >> ifilename;
     cout << "Enter output file name: ";
     cin >> ofilename;
-    cout << "Your Output Filename is: " << ofilename;
 }
 
 
@@ -133,7 +132,7 @@ void processCommands(string &ifilename, string &ofilename){
     char list_type; //double, int, string
     string list_struc; //stack or queue
     string third_word; //third word
-
+if (my_output_file.is_open()){
     while(getline(my_input_file, line)){
         stringstream ss(line);
         ss >> command >> list_name >> third_word;
@@ -262,6 +261,10 @@ void processCommands(string &ifilename, string &ofilename){
     }
     my_input_file.close();
     my_output_file.close();
+  }
+ else{
+     cout << "The Output file could not be opened!\n";
+ }
 }
 
 int main(){
