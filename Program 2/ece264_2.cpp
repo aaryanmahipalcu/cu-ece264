@@ -41,7 +41,7 @@ protected:
         size ++;
     }
     //Delete a node from the front
-    T void pop_front(){
+    T pop_front(){
         T new_data = head_ref->next->data;
         Node *temp = head_ref->next->next;
         delete(head_ref->next);
