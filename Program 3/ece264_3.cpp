@@ -114,4 +114,12 @@ int main() {
 void sortDataList(list<Data *> &l) {
   // Fill this in
 
+
+}
+
+bool lessthan (Data *p1, Data *p2){
+  if(&p1 < &p2){
+    
+  }
+
 }
