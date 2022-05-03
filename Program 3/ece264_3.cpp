@@ -112,11 +112,11 @@ int main() {
 // class defintions here if you wish.
 
 //Boolean defining a comparator for social security numbers
-bool ssn_comp(cost Data* obj1, const Data* obj2){
+bool ssn_comp(const Data* obj1, const Data* obj2){
   return !(obj1 -> ssn >= obj2 -> ssn);
 }
 //Boolean to sort by first name, last name, and ssn
-bool comp(cost Data* obj1, const Data* obj2){
+bool comp(const Data* obj1, const Data* obj2){
   if (obj1 -> lastName > obj2 -> lastName){
     return false;
   }
