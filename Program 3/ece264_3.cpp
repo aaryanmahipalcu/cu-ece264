@@ -500,6 +500,40 @@ struct nameLengths{
   int lastName = 0;
 };
 
+unsigned long long valueAt(my_data *d, int position, field type){
+  unsigned int shift = position*AFS_R_POWER;
+  if(type == field::firstName){
+    return (d->firstNamesOrder >> shift) % AFS_R;
+  }
+  if(type == field::lastName){
+    return (d->lastNameOrder >> shift) % AFS_R;
+  }
+  return (d->ssnOrder >> shift) % AFS_R;
+};
+
+void swap(my_data **&v, int *offsets, int start, int digit, field type){
+  int i = start;
+  int nf[AFS_R] = {};
+  int current_block = 0;
+  copy(offsets, offsets + AFS_R, begin(nf));
+  while(current_block < AFS_R - 1){
+    if(i >= start + offsets[current_block + 1]){
+      current_block += 1;
+      continue;
+    }
+    int value = valueAt(v[i], digit, type);
+    if(value == current_block){
+      i += 1;
+      continue;
+    }
+    auto swap_to = start + nf[value];
+    auto tmp = v[swap_to];
+    v[swap_to] = v[i];
+    v[i] = tmp;
+    nf[value] += 1;
+  }
+};
+
 void sortDataList(list<Data *> &l){
 
 };
