@@ -485,6 +485,20 @@ bool comp(my_data *first, my_data *last){
   return first->ssnOrder < last->ssnOrder;
 }
 
+const unsigned int AFS_R = 32;
+const unsigned int AFS_R_POWER = 5;
+const int STDSORT_CUTOFF = 50;
+
+enum field{
+  lastName = 1,
+  firstName = 2,
+  ssn = 3,
+};
+
+struct nameLengths{
+  int firstName = 0;
+  int lastName = 0;
+};
 
 void sortDataList(list<Data *> &l){
 
