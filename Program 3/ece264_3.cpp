@@ -111,31 +111,9 @@ int main() {
 // You may add global variables, functions, and/or
 // class defintions here if you wish.
 
-//Boolean defining a comparator for social security numbers
-bool ssn_comp(const Data* obj1, const Data* obj2){
-  return !(obj1 -> ssn >= obj2 -> ssn);
-}
-//Boolean to sort by first name, last name, and ssn
-bool comp(const Data* obj1, const Data* obj2){
-  if (obj1 -> lastName > obj2 -> lastName){
-    return false;
-  }
-  if (obj1 -> lastName < obj2 -> lastName){
-    return true;
-  }
-  if (obj1 -> firstName > obj2 -> firstName){
-    return false;
-  }
-  if (obj1 -> firstName < obj2 -> firstName){
-    return true;
-  }
-  return ssn_comp(obj1, obj2);
-}
-//Sorting the linked list
-void sortDataList(list<Data *> &l){
-  if (l.front() -> lastName == l.back() -> lastName){
-    l.sort(ssn_comp);
-    return;
-  }
-  l.sort(comp);
+#include<iterator>
+#include<unordered_map>
+
+unordered_map<string, unsigned int> lastNamesOrdered = {
+  
 }
