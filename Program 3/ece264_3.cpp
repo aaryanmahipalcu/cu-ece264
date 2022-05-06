@@ -115,5 +115,13 @@ int main() {
 #include<unordered_map>
 
 unordered_map<string, unsigned int> lastNamesOrdered = {
-  
-}
+
+};
+
+unordered_map<string, unsigned int> firstNamesOrdered = {
+
+};
+
+void sortDataList(list<Data *> &l){
+
+};
