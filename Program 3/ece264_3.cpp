@@ -452,6 +452,40 @@ unordered_map<string, unsigned int> firstNamesOrdered = {
     {"ZOE", 492},       {"ZOEY", 493}
 };
 
+unsigned long long power10[10] = {
+    1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 100000000
+};
+  
+struct my_data{
+  Data *d;
+  unsigned int firstNamesOrder;
+  unsigned int lastNameOrder;
+  unsigned long long ssnOrder; 
+};
+
+bool comp_firstName(my_data *first, my_data *last){
+  return first->firstNamesOrder < last->firstNamesOrder;
+}
+
+bool comp_lastName(my_data *first, my_data *last){
+  return first->lastNameOrder < last->lastNameOrder;
+}
+
+bool comp_ssn(my_data *first, my_data *last){
+  return first->ssnOrder < last->ssnOrder;
+}
+
+bool comp(my_data *first, my_data *last){
+  if(first->lastNameOrder != first->lastNameOrder){
+    return first->lastNameOrder < last->lastNameOrder;
+  }
+  if(first->firstNamesOrder != first->firstNamesOrder){
+    return first->firstNamesOrder < last->lastNameOrder;
+  }
+  return first->ssnOrder < last->ssnOrder;
+}
+
+
 void sortDataList(list<Data *> &l){
 
 };
