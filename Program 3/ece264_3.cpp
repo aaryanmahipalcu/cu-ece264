@@ -534,6 +534,112 @@ void swap(my_data **&v, int *offsets, int start, int digit, field type){
   }
 };
 
-void sortDataList(list<Data *> &l){
+void Offsets(my_data **&v, int start, int end, int digit, int *offsets, field type){
+  int counts[AFS_R] = {};
+  for(int i = start; i <end; i++){
+    counts[valueAt(v[i], digit, type)] += 1;
+  }
+  int sum = 0;
+  for(int i = 0; i < AFS_R; i+++){
+    offsets[i] = sum;
+    sum += counts[i];
+  }
+};
 
+void recursive_afs(my_data **&v, int start, int end, int digit, int max, field type){
+  if (start + 1 >= end){
+    return;
+  }
+  if(end - start < STDSORT_CUTOFF){
+    if(start + 1 >= end){
+      return;
+    }
+    auto b = v + start;
+    auto l = v + end;
+    if(type == field::lastName){
+      sort(b, l, comp_lastName);
+    }
+    else if(type == field::firstName){
+      sort(b, l, comp_firstName);
+    }
+    else{
+      sort(b, l, comp_ssn);
+    }
+    return;
+  }
+  int offsets[AFS_R + 1] = {};
+  offsets[AFS_R] = end - start;
+  Offsets(v, start, end, digit, offsets, type);
+  swap(v, offsets, start, digit, type);
+  if(digit == 0){
+    return;
+  }
+  for(int i = 0; i < AFS_R; i++){
+    recursive_afs(v, start + offsets[i], start + offsets[i + 1], digit - 1, max, type);
+  }
+};
+
+int max_digit(field type){
+  if(type == field::ssn){
+    return 5;
+  }
+  return 2;
+};
+
+void afs(my_data **v, int start, int end, field type){
+  int md = max_digit(type);
+  recursive_afs(v, start, end, md, md, type);
+};
+
+my_data *vec[1200000];
+
+void sortDataList(list<Data *> &l){
+  int dataSize = l.size();
+
+  int i = 0;
+  for(auto iterator = l.begin(); iterator != l.end(), iterator++){
+    auto a = *iterator;
+    const char *ssn = a->ssn.c_str();
+    vec[i++] = new my_data{
+      a,
+      firstNamesOrdered[a->firstName],
+      lastNamesOrdered[a->lastName],
+      power10[8] * (ssn[0] - '0') + power10[7] * (ssn[1] - '0') + 
+            power10[6] * (ssn[2] - '0') + power10[5] * (ssn[4] - '0') +
+            power10[4] * (ssn[5] - '0') + power10[3] * (ssn[7] - '0') +
+            power10[2] * (ssn[8] - '0') + power10[1] * (ssn[9] - '0') +
+            (ssn[10] - '0'), 
+    };
+  }
+  afs(vec, 0, dataSize, field::lastName);
+  list<int> offsetsLists = {0};
+  for (int i = 1; i < dataSize; i++) {
+    if (vec[i]->lastNameOrder == vec[i - 1]->lastNameOrder) {
+      continue;
+    }
+    offsetsLists.push_back(i);
+  }
+  offsetsLists.push_back(dataSize);
+
+  for (auto iterator = next(offsetsLists.begin()); iterator != offsetsLists.end(); iterator++) {
+    auto p = prev(iterator);
+    afs(vec, *p, *iterator, field::firstName);
+  }
+
+  list<int> offsetsLists1 = {0};
+  for (int i = 1; i < dataSize; i++) {
+    if (vec[i]->firstNamesOrder == vec[i - 1]->firstNamesOrder &&
+        vec[i]->lastNameOrder == vec[i - 1]->lastNameOrder) {
+      continue;
+    }
+    offsetsLists1.push_back(i);
+  }
+  offsetsLists1.push_back(dataSize);
+
+  for (auto iterator = next(offsetsLists1.begin()); iterator != offsetsLists1.end(); iterator++) {
+    afs(vec, *prev(iterator), *iterator, field::ssn);
+  }
+
+  l.clear();
+  for (int i = 0; i < dataSize; i++) l.push_back(vec[i]->d);
 };
